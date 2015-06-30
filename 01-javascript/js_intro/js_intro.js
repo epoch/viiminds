@@ -39,3 +39,18 @@ var firstname;
 if (firstname) {
   console.log('your firstname is ' + firstname);
 }
+
+var rob = prompt('who is it?');
+
+switch(rob) {
+  case "Robert":
+    console.log(rob + ' is here');
+    break;
+  case 'Bob':
+    console.log(rob + ' is not here');
+    break;
+  default:
+    alert('nobody home!');
+}
+
+// parseInt(string, radix);
