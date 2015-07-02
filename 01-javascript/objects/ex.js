@@ -45,14 +45,35 @@ var film1 = {
   stars: ['the guy from 90210', 'sharks']
 }
 
-function filmInfo(movie) {
+// function filmInfo(movie) {
+//   var info = '';
+
+//   info += movie.title;
+//   info += ' lasts for ' + movie.duration + ' minutes.';
+//   info += ' stars: ' + movie.stars.join(', ');
+
+//   console.log(info);
+// }
+
+var filmInfo = function(movie) {
   var info = '';
 
   info += movie.title;
   info += ' lasts for ' + movie.duration + ' minutes.';
   info += ' stars: ' + movie.stars.join(', ');
 
-  console.log(info);
+  console.log(info);  
 }
 
+
 filmInfo(film1);
+
+
+var myName = 'dt';
+
+function doSomething() {
+  var localSecret = 'blah';
+  console.log(localSecret);
+}
+
+
