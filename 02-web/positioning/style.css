@@ -1,0 +1,28 @@
+body {
+  background-color: linen;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto; /* long way top right bottom left */
+}
+
+.hide {
+  /*display: none;*/
+  visibility: hidden;
+}
+
+.showInline {
+  display: inline;
+}
+
+.showBlock {
+  display: block;
+}
+
+.showInlineBlock {
+  display: inline-block;
+  width: 50%;
+}
+
+/* static fixed relative absolute */

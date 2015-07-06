@@ -1,0 +1,21 @@
+body {
+  background-color: pink;
+  font-family: 'Indie Flower', cursive;
+}
+
+#bestClass {
+  color: linen;
+}
+
+ul.cohorts {
+  color: tomato;
+}
+
+.error {
+  background-color: red;
+}
+
+h1 {
+  padding: 10px;
+  font-size: 20px;
+}

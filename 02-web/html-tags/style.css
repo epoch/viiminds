@@ -1,0 +1,67 @@
+
+html {
+  box-sizing: border-box;
+}
+
+*, p:before, p:after {
+  box-sizing: inherit;
+}
+
+div p, #id, .class {
+}
+
+a[href="#about"] {
+  background-color: red;
+}
+
+/* child selector */
+
+div > p {
+}
+
+/* adjacent sibling selector */
+
+li:first-of-type + li {
+  color: blue;
+}
+
+.peek+div {
+  color: red;
+}
+
+/* general sibling selector */
+
+.peek ~ div {
+  background-color: yellow;
+}
+
+/* pseudo-selectors or pseudo-classes */
+.peek:hover {
+  background-color: pink;
+}
+
+/* :active :disabled :nth-child :focus */
+
+* {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Arial;
+  /* font: bold 12px Arial; shorthand */
+}
+
+div > p {
+  background-color: pink;
+  padding: 30px;
+  width: 100%;
+  border: 5px solid black;
+}
+
+
+/* display */
+
+/*inline block inline-block none; */
+
+
+li {
+  display: inline-block;
+}
