@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+html {}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+#better {
+  padding-left: 5px;
+}
+
+#container {
+  background-color: pink;
+  width: 700px;
+  margin: 0 auto;
+}
+
+img {
+/*  width: 25%;
+  margin: 0;*/
+
+  float: left;
+  width: 24.25%;
+  margin-right: 1%;
+  /*display: inline-block;  defaults to inline-block */
+}
+
+#image-container img:last-child {
+  margin-right: 0;
+}
