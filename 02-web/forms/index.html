@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forms</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    
+    <h1>HTML5 Form inputs examples</h1>
+    <form action="/destination">
+      
+      <p>
+        <label for="query">Things to search for</label>
+        <input type="search" name="query" id="query" placeholder="hotdogs">
+      </p>
+
+      <p>
+        <label for="name">name:</label>
+        <input type="text" name="name" id="name" placeholder="viiminds">
+      </p>
+
+      <p>
+        <label for="age">age:</label>
+        <input type="number" name="age" id="age" placeholder="62">
+      </p>
+
+      <p>
+        <label for="myspace_page">myspace page:</label>
+        <input type="url" name="myspace_page" id="myspace_page">
+      </p>
+
+      <p>
+        <label for="address">Address:</label>
+        <input type="email" name="address" id="address">
+      </p>
+
+      <p>
+        <label for="avator">Avator:</label>
+        <input type="file" name="avator" id="avator">
+      </p>
+
+      <p>
+        <label for="letter_home">Letter to home:</label>
+        <textarea name="letter_home" id="letter_home" placeholder="dear mom and dad"></textarea>
+      </p>
+
+      <p>
+        <label for="dob">Date of birth</label>
+        <input type="date" name="dob" id="dob">
+      </p>
+
+      <p>
+        select your vices:
+        <label for="cigars">Cigars</label>
+        <input type="checkbox" id="cigars" name="vices" value="cigars">
+        <label for="bourbon">bourbon</label>
+        <input type="checkbox" id="bourbon" name="vices" value="bourbon">
+        <label for="heroin">Heroin</label>
+        <input type="checkbox" id="heroin" name="vices" value="heroin">
+      </p>
+
+      <p>
+        select your favourite vice:
+        <label for="fav-vice">Favourite vice</label>
+        <select name="fav-vice" id="fav-vice">
+          <option value="cigars">Cigars</option>
+          <option value="bourbon">Bourbon</option>
+          <option value="heroin">Heroin</option>
+        </select>
+      </p>
+
+      <button>Submit</button>
+
+    </form>
+  </div>
+  
+  <script src="forms.js"></script>
+</body>
+</html>
