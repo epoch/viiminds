@@ -1,0 +1,58 @@
+body { font-size: 8px;}
+
+div {
+  border: 1px solid black;
+  height: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#div-a {
+  background-color: pink;
+  width: 50%;
+}
+
+#div-b {
+  background-color: plum;
+  width: 300px;
+}
+
+#div-c {
+  background-color: linen;
+  float: left;
+}
+
+#div-d {
+  background-color: lime;
+  clear: both;
+}
+
+/*.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}*/
+
+li {
+  list-style-type: none;
+  display: inline;
+  font-size: 2em;
+  padding-right: 1em;
+}
+
+@media all and (max-width: 40em) {
+
+  li {
+    display: block;
+  }
+
+}
+
+@media all and (min-width: 50em) {
+
+  li {
+    font-size: 2.5em;
+    display: none;
+  }
+}
+
