@@ -1,3 +1,11 @@
 .done {
   text-decoration: line-through;
+  color: gray;
+}
+
+
+/* so user cannot highlight the LIs */
+#todos li {
+  user-select: none;
+  -webkit-user-select: none;
 }
