@@ -11,6 +11,7 @@ window.onload = function() {
   var dothis = function(event) {
     event.preventDefault();
 
+    console.log('this should appear');
     console.log(event);
     console.log('submitting form');
 
@@ -30,3 +31,4 @@ window.onload = function() {
   submitButton.addEventListener('click', dothis);
   // submitButton.addEventListener('click', dothat);
 }
+
