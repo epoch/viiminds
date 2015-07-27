@@ -44,6 +44,15 @@ get '/dishes/:id' do
   erb :show
 end
 
+# delete the actual dish
+post '/dishes/:id/delete' do
+  # generate sql to delete dish with the correct id
+  sql = "DELETE FROM dishes WHERE id = #{ params[:id] };"
+  run_sql(sql)
+  # redirect to home page
+  redirect to '/'
+end
+
 def run_sql(sql)
   db = PG.connect(:dbname => 'goodfoodhunting')
   rows = db.exec(sql)

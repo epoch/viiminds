@@ -1,0 +1,11 @@
+img {
+  max-width: 300px;
+}
+
+#dish-list img {
+  width: 100px;
+}
+
+form {
+  display: inline-block;
+}

@@ -1,8 +1,17 @@
 
-
 <p><%= @dish['name'] %></p>
 
 <p>
  <img src="<%= @dish['image_url'] %>" alt="<%= @dish['image_url'] %>"> 
 </p>
+
+<a href="/">Home</a> | 
+<a href="/dishes/<%= @dish['id'] %>/edit">Edit</a> |
+
+<form action="/dishes/<%= @dish['id'] %>/delete" method="post">
+  <button>delete</button>
+</form>
+
+
+
 
