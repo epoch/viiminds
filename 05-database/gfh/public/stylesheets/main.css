@@ -1,0 +1,43 @@
+a {
+  text-decoration: none;
+}
+
+header h1 span {
+  color: red;
+}
+
+header h1 {
+  text-align: center;
+}
+
+img {
+  max-width: 300px;
+}
+
+#dish-list div {
+  float: left;
+  width: 20%;
+  margin-right: 5%;
+  margin-bottom: 2em;
+}
+
+#dish-list img {
+  width: 100%;
+  display: block;
+}
+
+form {
+  display: inline-block;
+}
+
+nav ul {
+  padding-left: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 0.5em;
+  background-color: plum;
+  padding: 0.2em;
+  border-radius: 1em;
+}
