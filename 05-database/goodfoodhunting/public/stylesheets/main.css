@@ -9,3 +9,11 @@ img {
 form {
   display: inline-block;
 }
+
+nav ul {
+  padding-left: 0;
+}
+
+nav ul li {
+  display: inline-block;
+}

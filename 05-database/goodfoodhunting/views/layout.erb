@@ -8,6 +8,14 @@
 <body>
 
   <h1>good food hunting</h1>
+
+  <nav>
+    <ul>
+      <% @dish_types.each do |dish_type| %>
+        <li><a href="/dish_types/<%= dish_type %>"><%= dish_type %></a></li>
+      <% end %>
+    </ul>
+  </nav>
   
   <%= yield %>
 

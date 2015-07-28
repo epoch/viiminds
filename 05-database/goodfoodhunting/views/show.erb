@@ -9,6 +9,7 @@
 <a href="/dishes/<%= @dish['id'] %>/edit">Edit</a> |
 
 <form action="/dishes/<%= @dish['id'] %>/delete" method="post">
+  <input type="hidden" name="_method" value="delete">
   <button>delete</button>
 </form>
 

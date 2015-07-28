@@ -3,10 +3,20 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'pg'
 
+before do
+  sql = 'SELECT DISTINCT dish_type FROM dishes;'
+  @dish_types = run_sql(sql).map {|type| type['dish_type']}
+end
+
 get '/' do
   sql = 'SELECT * FROM dishes;'
   @dishes = run_sql(sql) # always going to be a collection
+  erb :index
+end
 
+get '/dish_types/:dish_type' do
+  sql = "select * from dishes where dish_type = '#{ params[:dish_type] }'"
+  @dishes = run_sql(sql)
   erb :index
 end
 
@@ -31,8 +41,8 @@ get '/dishes/:id/edit' do
 end
 
 # update the dish
-post '/dishes/:id' do
-  sql = "UPDATE dishes SET name='#{ params[:name] }', image_url='#{ params[:image_url] }' WHERE id = #{ params[:id] };"
+put '/dishes/:id' do
+  sql = "UPDATE dishes SET name='#{ params[:name] }', image_url='#{ params[:image_url] }', dish_type='#{ params[:dish_type] }' WHERE id = #{ params[:id] };"
   run_sql(sql)
   redirect to "/dishes/#{ params[:id] }"
 end
@@ -45,7 +55,7 @@ get '/dishes/:id' do
 end
 
 # delete the actual dish
-post '/dishes/:id/delete' do
+delete '/dishes/:id/delete' do
   # generate sql to delete dish with the correct id
   sql = "DELETE FROM dishes WHERE id = #{ params[:id] };"
   run_sql(sql)
