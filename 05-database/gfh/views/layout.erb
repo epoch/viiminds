@@ -14,9 +14,9 @@
 
   <nav> <!-- HTML5 tags -->
     <ul>
-      <%# @dish_types.each do |dish_type| %>
-        <li><a href="/dish_types/<%#= dish_type %>"><%#= dish_type %></a></li>
-      <%# end %>
+      <% @dish_types.each do |dish_type| %>
+        <li><a href="/dish_types/<%= dish_type.id %>"><%= dish_type.name %></a></li>
+      <% end %>
     </ul>
   </nav>
   

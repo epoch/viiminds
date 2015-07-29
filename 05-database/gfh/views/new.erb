@@ -13,9 +13,10 @@
 
   <p>
     <label for="">Dish Type</label>
-    <select name="dish_type" id="">
-      <option value="snack">Snack</option>
-      <option value="dessert">Dessert</option>
+    <select name="dish_type_id" id="">
+      <% DishType.all.each do |dish_type| %>
+        <option value="<%= dish_type.id %>"><%= dish_type.name %></option>  
+      <% end %>
     </select>
   </p>
 

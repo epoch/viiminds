@@ -8,11 +8,16 @@ require_relative 'dish'
 require_relative 'dish_type'
 
 before do
-  #@dish_types = Dish.pluck(:dish_type).uniq
+  @dish_types = DishType.all
 end
 
 after do # so we do not run out of database connection
   ActiveRecord::Base.connection.close
+end
+
+get '/dish_types/:dish_type_id' do
+  @dishes = Dish.where(dish_type_id: params[:dish_type_id])
+  erb :index
 end
 
 get '/' do
@@ -30,7 +35,7 @@ post '/dishes' do
   dish = Dish.new
   dish.name = params[:name]
   dish.image_url = params[:image_url]
-  dish.dish_type = params[:dish_type]
+  dish.dish_type_id = params[:dish_type_id]
   dish.save # save to database
   # i am do no error checking watsoever
   redirect to '/'
