@@ -2,21 +2,17 @@ require 'pry'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'pg'
-require 'active_record'
 
-# connect to the database
-ActiveRecord::Base.establish_connection({
-  :adapter => 'postgresql',
-  :username => 'daniel',
-  :database => 'goodfoodhunting'
-})
-
-# for activerecord to map to table dishes
-class Dish < ActiveRecord::Base
-end
+require_relative 'config'
+require_relative 'dish'
+require_relative 'dish_type'
 
 before do
-  @dish_types = Dish.pluck(:dish_type).uniq
+  #@dish_types = Dish.pluck(:dish_type).uniq
+end
+
+after do # so we do not run out of database connection
+  ActiveRecord::Base.connection.close
 end
 
 get '/' do
@@ -57,7 +53,7 @@ put '/dishes/:id' do
   @dish = Dish.find params[:id]
   @dish.name = params[:name]
   @dish.image_url = params[:image_url]
-  @dish.dish_type = params[:dish_type]
+  @dish.dish_type_id = params[:dish_type_id]
   @dish.save  
   redirect to "/dishes/#{ @dish.id }"
 end

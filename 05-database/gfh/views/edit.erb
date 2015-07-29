@@ -14,7 +14,15 @@
 
   <p>
     <label for="">Dish Type</label>
-    <input type="text" name="dish_type" value="<%= @dish['dish_type'] %>">
+    <select name="dish_type_id">
+      <% DishType.all.each do |dish_type| %>
+        <% if dish_type.id ==  @dish.dish_type_id %>
+          <option selected value="<%= dish_type.id %>"><%= dish_type.name %></option>
+        <% else %>
+          <option value="<%= dish_type.id %>"><%= dish_type.name %></option>  
+        <% end %>      
+      <% end %>
+    </select>
   </p>
 
   <button>Update</button>
