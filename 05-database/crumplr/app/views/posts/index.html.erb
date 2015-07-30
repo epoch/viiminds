@@ -1,0 +1,7 @@
+<h1>Listing post</h1>
+
+<a href="/posts/new">new post</a>
+
+<% @posts.each do |post| %>
+  <h2><a href="/posts/<%= post.id %>/edit"><%= post.title %></a></h2>
+<% end %>

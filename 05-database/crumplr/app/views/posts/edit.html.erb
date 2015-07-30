@@ -1,0 +1,7 @@
+<form action="/posts" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="hidden" name="_method" value="put">
+  <label for="">title</label>
+  <input type="text" name='title' value='<%= @post.title %>'>
+  <button>create</button>
+</form>
