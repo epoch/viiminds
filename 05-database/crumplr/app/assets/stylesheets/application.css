@@ -17,3 +17,8 @@
 body {
   font-family: 'Shadows Into Light', cursive;
 }
+
+
+.dangerous {
+  color: red;
+}

@@ -4,8 +4,12 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def show
+    @post = Post.find params[:id]
+  end
+
   def new
-    
+    @post = Post.new
   end
 
   def create
@@ -23,7 +27,13 @@ class PostsController < ApplicationController
     @post = Post.find params[:id]
     @post.title = params[:title]
     @post.save
-    redirect_to '/'
+    redirect_to '/posts'
+  end
+
+  def destroy
+    @post = Post.find params[:id]
+    @post.destroy
+    redirect_to '/posts'
   end
 
 end
