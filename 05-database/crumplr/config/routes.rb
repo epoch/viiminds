@@ -7,6 +7,14 @@ Rails.application.routes.draw do
   get '/contact' => 'pages#contact'
 
 
+  # get /session/new - login form
+  get '/login' => 'session#new'
+
+  # post /session - submit the login form - creating the session
+  post '/login' => 'session#create'
+
+  delete '/logout' => 'session#destroy'   
+
   # get '/' => 'posts#index'
   # get '/posts/:id' => 'posts#show'
 

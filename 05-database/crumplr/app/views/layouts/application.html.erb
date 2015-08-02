@@ -8,6 +8,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
+<% if logged_in? %>
+  logged in as <%= current_user.email %>
+  <%= form_tag '/login', method: :delete do %>
+    <button>logout</button>
+  <% end %>
+<% else %>
+  <p><%= link_to 'login', '/login' %></p>
+<% end %>
+
 
 <%= render '/shared/menu' %>
 
