@@ -1,3 +1,4 @@
+require 'httparty'
 require 'sinatra'
 require 'sinatra/reloader'
 
@@ -9,7 +10,8 @@ after do
 end
 
 get '/' do
-  @tasks = Task.all
+  # @tasks = Task.all
+  #@tasks = HTTParty.get('http://localhost:4567/todos.json')
   erb :index
 end
 

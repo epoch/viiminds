@@ -1,7 +1,24 @@
-<h1>hello world</h1>
+<h1>todor</h1>
 
-<% @tasks.each do |task| %>
+<%#= @task[0] %>
+<div></div>
 
-  <p><%= task.body %></p>
+<button>fetch tasks</button>
 
-<% end %>
+<script>
+
+  var displayTasks = function(data) {
+    console.log('displaying');
+
+    data.forEach(function(task) { // ecmascript 5 forEach
+      $('div').append($('<p>').html(task.body));
+    });
+
+  }
+
+  $('button').on('click', function() {
+    $.getJSON('http://localhost:4567/todos.json', displayTasks);    
+  });
+  
+
+</script>
