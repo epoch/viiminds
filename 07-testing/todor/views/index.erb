@@ -1,21 +1,25 @@
-<h1>todor</h1>
+<h1>todor ajaxify</h1>
 
+<input id="newTaskInput" type="text">
+<button id="newTaskBtn">new task</button>
 <div class="tasks"></div>
-
-
 <script>
 
+  var createTaskHTML = function(task) {
+    var newTask = $('<div>')
+      .addClass('task')
+      .addClass(task.completed ? 'completed' : '')
+      .attr("data-id", task.id)
+    
+    newTask.append($('<span>').html(task.body));
+    newTask.append($('<button>').html('kill me now'));
+    return newTask;  
+  }
+
   var displayTasks = function(data) {
-
     var $tasks = $('.tasks');
-
-    data.forEach(function(task) { // ecmascript 5 forEach
-
-      var newTask = $('<p>')
-        .attr("data-id", task.id)
-        .html(task.body + ' ' + task.completed);
-
-      $tasks.append(newTask);
+    data.forEach(function(task) { // es5 forEach
+      $tasks.append(createTaskHTML(task));
     });
   }
 
@@ -25,12 +29,41 @@
 
   $.ajax(options).done(displayTasks);
 
-  $('.tasks').on('click', 'p', function(event) {
-    var id = $(this).data('id');
+  //===================================================
+
+  $('#newTaskBtn').on('click', function() {
+    $.ajax({
+      url: 'http://localhost:5000/todos',
+      type: 'post',
+      data: { body: $('#newTaskInput').val() }
+    }).done(function(task) {
+      $('.tasks').append(createTaskTag(task));
+    });
+  });
+
+  $('.tasks').on('click', 'span', function(event) {
+    console.log('what is this:', this);  // the this keyword is pointing to the element the user clicked on
+    var id = $(this).parent().data('id');
+
     $.ajax({
       url: 'http://localhost:5000/todos/' + id,
-      type: 'put'
-    }).done();
+      type: 'put',
+      context: this
+    }).done(function() {
+      $(this).closest('div').toggleClass('completed');
+    });
+  });
+
+  $('.tasks').on('click', 'button', function() {
+    var id = $(this).parent().data('id');
+
+    $.ajax({
+      url: 'http://localhost:5000/todos/' + id,
+      type: 'delete',
+      context: this
+    }).done(function() {
+      $(this).closest('div').remove();
+    })
 
   });
   

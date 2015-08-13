@@ -1,0 +1,11 @@
+.completed span {
+  text-decoration: line-through;
+}
+
+.task {
+  margin: 1em 0;
+}
+
+.task span {
+  margin-right: 1em; 
+}

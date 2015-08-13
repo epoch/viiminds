@@ -7,4 +7,6 @@ CREATE TABLE tasks (
   body VARCHAR(40) NOT NULL
 );
 
+ALTER TABLE tasks ADD COLUMN completed BOOLEAN DEFAULT FALSE;
+
 
