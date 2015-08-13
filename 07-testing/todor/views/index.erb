@@ -3,44 +3,51 @@
 <input id="newTaskInput" type="text">
 <button id="newTaskBtn">new task</button>
 <div class="tasks"></div>
-<script>
 
-  var createTaskHTML = function(task) {
-    var newTask = $('<div>')
-      .addClass('task')
-      .addClass(task.completed ? 'completed' : '')
-      .attr("data-id", task.id)
-    
-    newTask.append($('<span>').html(task.body));
-    newTask.append($('<button>').html('kill me now'));
-    return newTask;  
+<script id="taskTemplate" type="text/x-underscore-template">
+  <div class="task {{ completedClass }}" data-id="{{ id }}">
+    <span>{{ body }}</span>
+    <button>kill me</button>
+  </div>
+</script>
+
+<script>
+  _.templateSettings = {
+    interpolate: /\{\{(.+?)\}\}/g
+  };  
+
+  var renderTaskTemplate = function(task) {
+    var html = _.template( $("#taskTemplate").html() );
+    task.completedClass = task.completed ? 'completed': '';
+    return html(task);
   }
 
+  // fetch task and display
   var displayTasks = function(data) {
     var $tasks = $('.tasks');
     data.forEach(function(task) { // es5 forEach
-      $tasks.append(createTaskHTML(task));
+      $tasks.append(renderTaskTemplate(task));
     });
   }
 
-  var options = {
+  $.ajax({
     url: 'http://localhost:5000/todos.json'
-  }
+  }).done(displayTasks);
 
-  $.ajax(options).done(displayTasks);
-
-  //===================================================
-
+  // create new task
   $('#newTaskBtn').on('click', function() {
+    var $input = $('#newTaskInput');
     $.ajax({
       url: 'http://localhost:5000/todos',
       type: 'post',
-      data: { body: $('#newTaskInput').val() }
+      data: { body: $input.val() }
     }).done(function(task) {
-      $('.tasks').append(createTaskTag(task));
+      $input.val('');
+      $('.tasks').append(renderTaskTemplate(task));
     });
   });
 
+  // toggle complete
   $('.tasks').on('click', 'span', function(event) {
     console.log('what is this:', this);  // the this keyword is pointing to the element the user clicked on
     var id = $(this).parent().data('id');
@@ -54,6 +61,7 @@
     });
   });
 
+  // delete task
   $('.tasks').on('click', 'button', function() {
     var id = $(this).parent().data('id');
 
