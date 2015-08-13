@@ -1,24 +1,37 @@
 <h1>todor</h1>
 
-<%#= @task[0] %>
-<div></div>
+<div class="tasks"></div>
 
-<button>fetch tasks</button>
 
 <script>
 
   var displayTasks = function(data) {
-    console.log('displaying');
+
+    var $tasks = $('.tasks');
 
     data.forEach(function(task) { // ecmascript 5 forEach
-      $('div').append($('<p>').html(task.body));
-    });
 
+      var newTask = $('<p>')
+        .attr("data-id", task.id)
+        .html(task.body + ' ' + task.completed);
+
+      $tasks.append(newTask);
+    });
   }
 
-  $('button').on('click', function() {
-    $.getJSON('http://localhost:4567/todos.json', displayTasks);    
+  var options = {
+    url: 'http://localhost:5000/todos.json'
+  }
+
+  $.ajax(options).done(displayTasks);
+
+  $('.tasks').on('click', 'p', function(event) {
+    var id = $(this).data('id');
+    $.ajax({
+      url: 'http://localhost:5000/todos/' + id,
+      type: 'put'
+    }).done();
+
   });
   
-
 </script>
