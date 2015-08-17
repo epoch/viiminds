@@ -1,6 +1,6 @@
 <h1>todor ajaxify</h1>
 
-<input id="newTaskInput" type="text">
+<input id="newTaskInput" type="text" autofocus>
 <button id="newTaskBtn">new task</button>
 <div class="tasks"></div>
 
@@ -34,8 +34,7 @@
     url: 'http://localhost:5000/todos.json'
   }).done(displayTasks);
 
-  // create new task
-  $('#newTaskBtn').on('click', function() {
+  var createTask = function() {
     var $input = $('#newTaskInput');
     $.ajax({
       url: 'http://localhost:5000/todos',
@@ -45,6 +44,14 @@
       $input.val('');
       $('.tasks').append(renderTaskTemplate(task));
     });
+  }
+
+  // create new task
+  $('#newTaskBtn').on('click', createTask);
+  $('#newTaskInput').on('keyup', function() {
+    if (event.which === 13) {
+      createTask();
+    }
   });
 
   // toggle complete
