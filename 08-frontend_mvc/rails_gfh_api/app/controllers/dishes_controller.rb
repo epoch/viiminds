@@ -2,7 +2,7 @@ class DishesController < ApplicationController
 
   def index
     dishes = Dish.all
-    render json: dishes.to_json, status: 200
+    render json: dishes, methods: :star_count, status: 200
   end
 
   def create
@@ -13,6 +13,9 @@ class DishesController < ApplicationController
       render json: { message: 'not ok'}.to_json, status: 422
     end
   end
+
+  # making dish_params a private method is a good pattern
+  private 
 
   def dish_params
     params.require(:dish).permit(:name, :image_url)

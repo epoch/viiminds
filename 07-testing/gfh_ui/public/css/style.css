@@ -1,0 +1,85 @@
+main {
+
+}
+
+.ui-card {
+  background-color: pink;
+  width: 100%;
+  margin-bottom: 3%;
+  /*margin-right: 5%;*/
+  border-radius: 0.5em;
+  float: left;
+  transition: .3s;
+}
+
+.ui-card:hover {
+  transform: translateY(0.3em);
+}
+
+.ui-card header {
+  line-height: 2em;
+}
+
+.right {
+  float: right;
+}
+
+.avatar {
+  display: inline-block; /* reminder */
+  vertical-align: middle;
+  width: 2em;
+  height: 2em;
+  border-radius: 2em;
+}
+
+.image {
+  position: relative;
+}
+.image img {
+  display: block;
+}
+
+.content {
+  padding: 1em;
+}
+
+.star {
+  user-select: none;
+  -webkit-user-select: none;
+  position: absolute;
+  display: none;
+  top: 0;
+  right: 0;
+  color: white;
+  font-size: 3em;
+  cursor: pointer;
+  transition: .5s;  
+}
+
+.image:hover .star {
+  display: block;
+}
+.star:hover {
+  color: yellow;
+}
+
+@media (min-width: 36em) {
+
+  .ui-card {
+    background-color: pink;
+    width: 48%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}
+
+@media (min-width: 66em) {
+
+  .ui-card {
+    background-color: pink;
+    width: 23%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}
+
