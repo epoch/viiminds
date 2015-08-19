@@ -1,59 +1,127 @@
+var DishItemView = Backbone.View.extend({
+  tagName: 'div', // optional because defaults to div
+  className: 'ui-card',
 
-$.ajax({
+  events: {
+    "click .star": "addStar",
+    "click .bookmark": "bookmark"
+  },
+
+  initialize: function() {
+    // if model changed redraw my component
+    this.listenTo(this.model, 'change', this.render);
+  },
+
+  bookmark: function() {
+    this.$el.find('.bookmark').html('bookmarked!');
+  },
+
+  addStar: function() {
+    var id = this.model.id;
+    $.ajax({
+      url: 'http://localhost:3000/stars',
+      data: { dish_id: id },
+      type: 'post',
+      context: this
+    }).done(function(response) {
+      this.model.set('star_count', response.star_count);
+    });
+  },  
+
+  render: function() {
+    var source = $('#dish-item-template').html();
+    var template = Handlebars.compile(source);
+    var html = template(this.model.toJSON());
+    this.$el.html(html);
+    return this;
+  }
+});
+
+var DishListView = Backbone.View.extend({
+  el: 'main',  
+
+  initialize: function() {
+    this.listenTo(this.collection, 'update', this.render);
+  },
+
+  render: function() {
+    this.$el.empty(); // empty before append, come back to this
+    this.collection.each(function(dish) {
+      var view = new DishItemView({ model: dish });
+      this.$el.append(view.render().el);
+    }, this)
+  }
+});
+
+var Dish = Backbone.Model.extend({
+  urlRoot: 'http://localhost:3000/dishes'
+});
+
+var Dishes = Backbone.Collection.extend({
+  model: Dish,
   url: 'http://localhost:3000/dishes'
-}).done(function(dishes) {
-
-
-  dishes.forEach(function(dish) {
-
-    var html = '';
-
-    html += '<header class="content">'
-    html += '<div class="right">14h</div>'
-    html += '<img class="avatar" src="https://placeholdit.imgix.net/~text?txtsize=75&txt=800%C3%97800&w=800&h=800" alt=""> Dan'
-    html += '</header>'
-
-    html += '<div class="image">'
-    html += '<img class="" src="https://placeholdit.imgix.net/~text?txtsize=75&txt=800%C3%97800&w=800&h=800" alt="">'
-    html += '<span class="star">&#9733;</span>'
-    html += '</div>'
-
-    html += '<div class="content">'
-    html += '<h2>' + dish.name + '</h2>'
-    html += '<h4>at werwer</h4>'
-    html += '</div>'
-
-    html += '<div class="content">'
-    html += '<span class="right">'+ dish.star_count +' stars</span>'
-    html += 'by DT'
-    html += '</div>'
-
-    var newDishHTML = $('<div>')
-      .attr('data-id', dish.id)
-      .addClass('ui-card')
-      .html(html);
-
-    $('main.content').append(newDishHTML);
-
-  });
 });
 
-$('main').on('click', '.star', function() {
-  var dish_id = $(this).closest('.ui-card').attr('data-id');
+var dishes = new Dishes();
+dishes.fetch();
 
-  $.ajax({
-    url: 'http://localhost:3000/stars',
-    data: { dish_id: dish_id },
-    context: this,
-    type: 'post'
-  }).done(function(response) {
-    console.log(response.star_count);
+var view = new DishListView({ collection: dishes });
+view.render();
 
-    $(this)
-      .closest('.ui-card') // up
-      .find('span.right') // down
-      .html(response.star_count + ' stars');  
+// dishes.fetch().done(function() {
 
-  })
-});
+//   dishes.each(function(dish) {
+//     var view = new DishItemView({ model: dish });
+//     $('main').append(view.render().el);
+//   });
+
+// });
+
+
+var newDish = function() {
+  // get value from inputs
+  var name = $('#name-input').val();
+  var image_url = $('#image-url-input').val();
+
+  var data = {
+    dish: {
+      name: name,
+      image_url: image_url
+    }
+  }
+
+  // make ajax post with data from inputs
+  //dishes.create(data)
+
+  // $.ajax({
+  //   url: 'http://localhost:3000/dishes',
+  //   data: data,
+  //   type: 'post'
+  // }).done(function(dish) {
+  //   // when done create new dish view and append to page
+  //   var dishModel = new Dish(dish);
+  //   var view = new DishItemView({ model: dishModel });
+  //   $('main').append(view.render().el);
+  // });
+}
+
+// get the button
+// listen to a click
+// pass it a function
+$('#new-dish-btn').on('click', newDish);
+
+
+
+
+
+// $.ajax({
+//   url: 'http://localhost:3000/dishes'
+// }).done(function(dishes) {
+//   dishes.forEach(function(dish) {
+//     var dishModel = new Dish(dish);
+//     var view = new DishItemView({ model: dishModel });
+//     $('main').append(view.render().el);
+//   });
+
+// });
 

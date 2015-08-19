@@ -5,13 +5,44 @@
   <title>gfh ui</title>
   <link rel="stylesheet" href="public/css/reset.css">
   <link rel="stylesheet" href="public/css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
   <script src="public/js/jquery.js"></script>
+  <script src="public/js/handlebars.js"></script>
+  <script src="public/js/underscore.js"></script>
+  <script src="public/js/backbone.js"></script>
 </head>
 <body>
 
-  <main class="content">
-       
+  <section class="new-dish-form content">
+    <input type="text" placeholder="name" id="name-input"> 
+    <input type="text" placeholder="image url" id="image-url-input">
+    <button id="new-dish-btn">new dish</button>
+  </section>
+    
+  <main class="content">    
   </main>
+
+  <script id="dish-item-template" type="text/x-handlebars-template">
+    <header class="content">
+    <div class="right">14h</div>
+    <img class="avatar" src="https://placeholdit.imgix.net/~text?txtsize=75&txt=800%C3%97800&w=800&h=800" alt=""> Dan
+    </header>
+
+    <div class="image">
+    <img class="" src="{{ image_url }}" alt="">
+    <span class="star">&#9733;</span>
+    </div>
+
+    <div class="content">
+    <h2>{{ name }}</h2>
+    <h4>at werwer</h4>
+    </div>
+
+    <div class="content">
+    <span class="right">{{ star_count }}</span>
+    <span class="bookmark">bookmark<span>
+    </div>
+  </script>  
     
   <script src="public/js/app.js"></script>
 </body>

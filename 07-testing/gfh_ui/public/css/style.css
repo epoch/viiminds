@@ -1,5 +1,13 @@
-main {
+body {
+  font-family: 'Droid Sans', sans-serif;
+}
 
+main {
+}
+
+.new-dish-form {
+  width: 100%;
+  text-align: center;
 }
 
 .ui-card {
@@ -10,6 +18,7 @@ main {
   border-radius: 0.5em;
   float: left;
   transition: .3s;
+  box-shadow: 2px 2px 2px gray;
 }
 
 .ui-card:hover {
@@ -54,6 +63,17 @@ main {
   font-size: 3em;
   cursor: pointer;
   transition: .5s;  
+}
+
+.bookmark {
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.bookmark:hover {
+  color: yellow;
 }
 
 .image:hover .star {
