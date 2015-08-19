@@ -1,72 +1,38 @@
-var DishItemView = Backbone.View.extend({
-  tagName: 'div', // optional because defaults to div
-  className: 'ui-card',
+var app = app || {};
 
-  events: {
-    "click .star": "addStar",
-    "click .bookmark": "bookmark"
-  },
+app.dishes = new app.Dishes();
+app.dishes.fetch();
 
-  initialize: function() {
-    // if model changed redraw my component
-    this.listenTo(this.model, 'change', this.render);
-  },
-
-  bookmark: function() {
-    this.$el.find('.bookmark').html('bookmarked!');
-  },
-
-  addStar: function() {
-    var id = this.model.id;
-    $.ajax({
-      url: 'http://localhost:3000/stars',
-      data: { dish_id: id },
-      type: 'post',
-      context: this
-    }).done(function(response) {
-      this.model.set('star_count', response.star_count);
-    });
-  },  
-
-  render: function() {
-    var source = $('#dish-item-template').html();
-    var template = Handlebars.compile(source);
-    var html = template(this.model.toJSON());
-    this.$el.html(html);
-    return this;
-  }
-});
-
-var DishListView = Backbone.View.extend({
-  el: 'main',  
-
-  initialize: function() {
-    this.listenTo(this.collection, 'update', this.render);
-  },
-
-  render: function() {
-    this.$el.empty(); // empty before append, come back to this
-    this.collection.each(function(dish) {
-      var view = new DishItemView({ model: dish });
-      this.$el.append(view.render().el);
-    }, this)
-  }
-});
-
-var Dish = Backbone.Model.extend({
-  urlRoot: 'http://localhost:3000/dishes'
-});
-
-var Dishes = Backbone.Collection.extend({
-  model: Dish,
-  url: 'http://localhost:3000/dishes'
-});
-
-var dishes = new Dishes();
-dishes.fetch();
-
-var view = new DishListView({ collection: dishes });
+view = new app.DishListView({ collection: app.dishes });
 view.render();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // dishes.fetch().done(function() {
 
