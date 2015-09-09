@@ -1,2 +1,4 @@
 body {
+  color: black;
+  background: -webkit-linear-gradient(315deg, red, blue);
   background: linear-gradient(135deg, red, blue); }
