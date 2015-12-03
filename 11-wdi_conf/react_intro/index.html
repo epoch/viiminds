@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <script src="https://fb.me/react-with-addons-0.13.3.js"></script>
+  <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+</head>
+<body>
+  
+  <div id="test"></div>
+  <div id="test2"></div>
+
+  <script type="text/jsx">
+
+    var Hello = React.createClass({
+      render: function() {
+        return <button>Hello world my name is {this.props.name}</button>
+      }
+    });
+
+    var App = React.createClass({
+      render: function() {
+        return (
+          <div>
+            <Hello />
+            <p>sdfsdfsdf</p> 
+            <Hello name="awesome" />
+          </div>
+        )
+      }
+    })
+
+    React.render(<App />, document.getElementById('test'));
+
+    // React.render(<Hello name="viiminds" />, document.getElementById('test'));
+    // React.render(<Hello />, document.getElementById('test2'));
+
+  </script>
+</body>
+</html>
